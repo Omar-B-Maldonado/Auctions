@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    {% for listing in listings %}
+        <hr>
+        <h3>
+            <a href="{% url 'listing' listing.id %}">{{ listing.title }}</a>
+        </h3>
+        <img src={{ listing.image }} alt="an image of this listing" style="width:300px">
+        <br>
+        <br>
+        Category: {{ listing.category|title }} <!-- https://stackoverflow.com/questions/14268342/make-the-first-letter-uppercase-inside-a-django-template -->
+        <br>
+        Starting bid: ${{ listing.starting_bid }}
+        <br>
+        {% if listing.current_bid == None %}
+            Current bid: {{ listing.current_bid }}
+        {% else %}
+            Current bid: ${{ listing.current_bid.amount }} - {{ listing.current_bid.owner }}
+        {% endif %}
+        <br>
+        <br>
+        {{ listing.description }}
+        
+    {% empty %}
+
+        There are no active listings.
+
+    {% endfor %}
+{% endblock %}
