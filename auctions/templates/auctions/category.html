@@ -11,11 +11,15 @@
         <img src={{ listing.image }} alt="an image of this listing" style="width:300px">
         <br>
         <br>
-        Category: {{ listing.category }}
+        Category: {{ listing.category|title }}
         <br>
-        Starting bid: {{ listing.starting_bid }}
+        Starting bid: ${{ listing.starting_bid }}
         <br>
-        Current bid:  {{ listing.current_bid }}
+        {% if listing.current_bid == None %}
+            Current bid: {{ listing.current_bid }}
+        {% else %}
+            Current bid: ${{ listing.current_bid.amount }} - {{ listing.current_bid.owner }}
+        {% endif %}
         <br>
         <br>
         {{ listing.description }}

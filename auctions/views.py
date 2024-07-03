@@ -189,7 +189,9 @@ def categories(request):
     })
 
 def category(request, category_choice):
+    listings = Listing.objects.filter(category=category_choice)
+    listings = listings.exclude(status="closed")
     return render(request, "auctions/category.html", {
-        "listings": Listing.objects.filter(category=category_choice),
+        "listings": listings,
         "category": category_choice.capitalize()
     })
