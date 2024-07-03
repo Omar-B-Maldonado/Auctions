@@ -96,7 +96,7 @@ def register(request):
 def listing(request, listing_id):
     listing_ = Listing.objects.get(pk=listing_id)
     is_in_watchlist = request.user.is_authenticated and Wish.objects.filter(owner=request.user, listing=listing_).exists()
-    if listing_.current_bid is None: min_val = listing_.starting_bid + 1
+    if listing_.current_bid is None: min_val = listing_.starting_bid
     else :                           min_val = listing_.current_bid.amount + 1
 
     if request.method == "POST":
