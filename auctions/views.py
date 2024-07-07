@@ -94,7 +94,12 @@ def register(request):
         return render(request, "auctions/register.html")
     
 def listing(request, listing_id):
-    listing_ = Listing.objects.get(pk=listing_id)
+    try:
+        listing_ = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        return render(request, "auctions/listing.html", {
+            "error": "This listing does not exist."
+        })
     is_in_watchlist = request.user.is_authenticated and Wish.objects.filter(owner=request.user, listing=listing_).exists()
     if listing_.current_bid is None: min_val = listing_.starting_bid
     else :                           min_val = listing_.current_bid.amount + 1
@@ -164,8 +169,13 @@ def create_listing(request):
     })
 
 def watchlist(request):
-    return render(request, "auctions/watchlist.html", {
-        "watchlist": request.user.watchlist.all()
+    listings = []
+    if request.user.is_authenticated:
+        wishes = request.user.watchlist.all()
+        for wish in wishes: listings.append(wish.listing)
+    return render(request, "auctions/index.html", {
+        "listings": listings,
+        "watchlist": True
     })
 
 def watch(request, listing_id):
@@ -191,7 +201,7 @@ def categories(request):
 def category(request, category_choice):
     listings = Listing.objects.filter(category=category_choice)
     listings = listings.exclude(status="closed")
-    return render(request, "auctions/category.html", {
+    return render(request, "auctions/index.html", {
         "listings": listings,
         "category": category_choice.capitalize()
     })

@@ -1,3 +1,30 @@
 body {
     padding: 10px;
 }
+#index-container{
+    display:flex;
+    overflow-x:scroll;
+    column-gap: 20px;
+    scrollbar-width: none; /* Hide scrollbar*/
+}
+.index-container::-webkit-scrollbar {
+    display: none;
+  }
+.listing-container{
+    flex: 0 0 300px; /* Ensure the flex properties don't override the width */
+    height: 550px;
+    padding:15px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    text-align:center;
+}
+.listing-text-container{
+    text-align:left;
+}
+.listing-description-container{
+    height:150px;
+    border-style:hidden;
+    border-width: 1px;
+    overflow-y:scroll;
+}

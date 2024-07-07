@@ -1,32 +1,54 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    {% if category %}
+        <h2>Active '{{ category }}' Listings</h2>
+    {% elif watchlist %}
+        <h2>Watchlist</h2>
+    {% else %}
+        <h2>Active Listings</h2>
+    {% endif %}
 
-    {% for listing in listings %}
-        <hr>
-        <h3>
-            <a href="{% url 'listing' listing.id %}">{{ listing.title }}</a>
-        </h3>
-        <img src={{ listing.image }} alt="an image of this listing" style="width:300px">
-        <br>
-        <br>
-        Category: {{ listing.category|title }} <!-- https://stackoverflow.com/questions/14268342/make-the-first-letter-uppercase-inside-a-django-template -->
-        <br>
-        Starting bid: ${{ listing.starting_bid }}
-        <br>
-        {% if listing.current_bid == None %}
-            Current bid: {{ listing.current_bid }}
-        {% else %}
-            Current bid: ${{ listing.current_bid.amount }} - {{ listing.current_bid.owner }}
-        {% endif %}
-        <br>
-        <br>
-        {{ listing.description }}
-        
-    {% empty %}
-
-        There are no active listings.
-
-    {% endfor %}
+    {% if watchlist and not user.is_authenticated %}
+        <i>Log in to view your watchlist.</i>
+    {% else %}
+        <div id="index-container">
+        {% for listing in listings %}
+            <div class="listing-container">
+                <h3>
+                    <a href="{% url 'listing' listing.id %}">{{ listing.title }}</a>
+                </h3>
+                <img src={{ listing.image }} alt="an image of this listing" style="max-width:300px; max-height:200px;">
+                <br>
+                
+                <div class="listing-text-container">
+                    <br>
+                    Category: {{ listing.category|title }} <!-- https://stackoverflow.com/questions/14268342/make-the-first-letter-uppercase-inside-a-django-template -->
+                    <br>
+                    Starting bid: ${{ listing.starting_bid }}
+                    <br>
+                    {% if listing.current_bid == None %}
+                        Current bid: {{ listing.current_bid }}
+                    {% else %}
+                        Current bid: ${{ listing.current_bid.amount }}
+                    {% endif %}
+                    <br>
+                    <br>
+                    <div class="listing-description-container">
+                        {{ listing.description }}
+                    </div>
+                </div>
+                
+            </div>
+        {% empty %}
+            {% if category %}
+                There are no active listings in this category.
+            {% elif watchlist %}
+                There are currently no items in your watchlist.
+            {% else %}
+                There are no active listings.
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
