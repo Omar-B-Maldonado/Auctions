@@ -2,18 +2,19 @@
 
 {% block body %}
     {% if category %}
-        <h2>Active '{{ category }}' Listings</h2>
+        <h2 class="title">Active '{{ category }}' Listings</h2>
     {% elif watchlist %}
-        <h2>Watchlist</h2>
+        <h2 class="title">Watchlist</h2>
     {% else %}
-        <h2>Active Listings</h2>
+        <h2 class="title">Active Listings</h2>
     {% endif %}
 
     {% if watchlist and not user.is_authenticated %}
         <i>Log in to view your watchlist.</i>
     {% else %}
+    <div id="outer-container">
         <div id="index-container">
-        {% for listing in listings %}
+        {% for listing in listings|dictsortreversed:"id" %}
             <div class="listing-container">
                 <h3>
                     <a href="{% url 'listing' listing.id %}">{{ listing.title }}</a>
@@ -50,5 +51,6 @@
             {% endif %}
         {% endfor %}
         </div>
+    </div>
     {% endif %}
 {% endblock %}

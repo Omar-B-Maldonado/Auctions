@@ -3,9 +3,10 @@ body {
 }
 #index-container{
     display:flex;
-    overflow-x:scroll;
+    overflow-x:auto;
     column-gap: 20px;
     scrollbar-width: none; /* Hide scrollbar*/
+    margin-top:15px;
 }
 .index-container::-webkit-scrollbar {
     display: none;
@@ -27,4 +28,11 @@ body {
     border-style:hidden;
     border-width: 1px;
     overflow-y:scroll;
+}
+.title {
+    text-align:center;
+}
+.nav {
+    align-content: center;
+    border-style: ridge;
 }

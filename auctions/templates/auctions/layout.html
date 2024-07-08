@@ -8,14 +8,7 @@
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1>Auctions</h1>
-        <div>
-            {% if user.is_authenticated %}
-                Signed in as <strong>{{ user.username }}</strong>
-            {% else %}
-                Not signed in.
-            {% endif %}
-        </div>
+        <h1 class="title">Auctions</h1>
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
@@ -42,8 +35,28 @@
                 </li>
             {% endif %}
         </ul>
-        <hr>
+        <div>
+            {% if user.is_authenticated %}
+                <i>&nbsp;&nbsp;&nbsp;Signed in as <strong>{{ user.username }}</strong></i>
+            {% else %}
+                <i>&nbsp;&nbsp;&nbsp;Not signed in.</i>
+            {% endif %}
+        </div>
         {% block body %}
         {% endblock %}
     </body>
+    <script>
+        function adjustContainer() {
+            var container = document.getElementById('index-container');
+            
+            // Check if the content is scrollable
+            if (container.scrollWidth > container.clientWidth) {
+                container.style.justifyContent = 'flex-start';
+            } else {
+                container.style.justifyContent = 'center';
+            }
+        }
+        window.onload = adjustContainer;
+        window.onresize = adjustContainer;
+    </script>
 </html>
