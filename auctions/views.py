@@ -38,7 +38,8 @@ class BidForm(forms.Form):
 
 def index(request):
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.exclude(status="closed")
+        "listings": Listing.objects.exclude(status="closed"),
+        "categories": category_choices
     })
 
 
@@ -56,10 +57,13 @@ def login_view(request):
             return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, "auctions/login.html", {
-                "message": "Invalid username and/or password."
+                "message": "Invalid username and/or password.",
+                "categories": category_choices
             })
     else:
-        return render(request, "auctions/login.html")
+        return render(request, "auctions/login.html", {
+            "categories": category_choices
+        })
 
 
 def logout_view(request):
@@ -77,7 +81,8 @@ def register(request):
         confirmation = request.POST["confirmation"]
         if password != confirmation:
             return render(request, "auctions/register.html", {
-                "message": "Passwords must match."
+                "message": "Passwords must match.",
+                "categories": category_choices
             })
 
         # Attempt to create new user
@@ -86,12 +91,15 @@ def register(request):
             user.save()
         except IntegrityError:
             return render(request, "auctions/register.html", {
-                "message": "Username already taken."
+                "message": "Username already taken.",
+                "categories": category_choices
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "auctions/register.html")
+        return render(request, "auctions/register.html", {
+            "categories": category_choices
+        })
     
 def listing(request, listing_id):
     try:
@@ -137,7 +145,8 @@ def listing(request, listing_id):
         "comments": listing_.comments.all(),
         "comment_form": NewCommentForm(),
         "is_in_watchlist": is_in_watchlist,
-        "bid_form": BidForm(min_value=min_val)
+        "bid_form": BidForm(min_value=min_val),
+        "categories": category_choices
     })
 
 def create_listing(request):
@@ -165,7 +174,8 @@ def create_listing(request):
             )
         return listing(request, new_listing.id)
     return render(request, "auctions/create.html", {
-        "form": NewListingForm()
+        "form": NewListingForm(),
+        "categories": category_choices
     })
 
 def watchlist(request):
@@ -175,7 +185,8 @@ def watchlist(request):
         for wish in wishes: listings.append(wish.listing)
     return render(request, "auctions/index.html", {
         "listings": listings,
-        "watchlist": True
+        "watchlist": True,
+        "categories": category_choices
     })
 
 def watch(request, listing_id):
@@ -193,15 +204,11 @@ def watch(request, listing_id):
             Wish.objects.filter(owner=request.user, listing=listing_).delete()
     return listing(request, listing_id)
 
-def categories(request):
-    return render(request, "auctions/categories.html", {
-        "categories": category_choices
-    })
-
 def category(request, category_choice):
     listings = Listing.objects.filter(category=category_choice)
     listings = listings.exclude(status="closed")
     return render(request, "auctions/index.html", {
         "listings": listings,
-        "category": category_choice.capitalize()
+        "category": category_choice.capitalize(),
+        "categories": category_choices
     })

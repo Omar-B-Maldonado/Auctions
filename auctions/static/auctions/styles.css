@@ -16,7 +16,7 @@ body {
     height: 550px;
     padding:15px;
     border-style: solid;
-    border-width: 1px;
+    border-width:1px;
     box-sizing: border-box;
     text-align:center;
 }
@@ -33,6 +33,5 @@ body {
     text-align:center;
 }
 .nav {
-    align-content: center;
     border-style: ridge;
 }
