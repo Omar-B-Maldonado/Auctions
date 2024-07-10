@@ -1,6 +1,25 @@
 body {
     padding: 10px;
+    background-color: white;
+    color: black;
 }
+.dark-mode {
+    
+    background-color: rgb(16, 16, 16);
+    color:gainsboro;
+    a {
+        color:lightskyblue;
+    }
+    .dropdown-menu {
+        background-color:rgb(16, 16, 16);
+    }
+    .dropdown-menu .dropdown-item {
+        color: gainsboro;
+    }
+    .dropdown-menu .dropdown-item:hover {
+        background-color: rgb(62, 62, 62);
+    }
+  }
 #index-container{
     display:flex;
     overflow-x:auto;

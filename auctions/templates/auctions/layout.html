@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     {% for category in categories %}
-                        <li><a class="dropdown-item" href="{% url 'category' category.0 %}">{{ category.1 }}</a></li></a>
+                        <li><a class="dropdown-item" href="{% url 'category' category.0 %}">{{ category.1 }}</a></li>
                     {% endfor %}
                 </ul>
               </li>
@@ -41,6 +41,9 @@
                     <a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
             {% endif %}
+            <li class="nav-item">
+                <a id="theme-button" class="nav-link" href="#">Toggle Dark Mode</a>
+            </li>
         </ul>
         <div>
             {% if user.is_authenticated %}
@@ -64,7 +67,20 @@
                 container.style.justifyContent = 'center';
             }
         }
-        window.onload = adjustContainer;
+        const toggleDarkMode = function(){
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode);
+        }
+        window.onload = function(){
+            const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+            if (isDarkMode) document.body.classList.add('dark-mode');
+            else            document.body.classList.remove('dark-mode');
+            adjustContainer();
+        };
         window.onresize = adjustContainer;
+        
+        let themeButton = document.getElementById('theme-button');
+        themeButton.addEventListener('click', toggleDarkMode)
     </script>
 </html>
