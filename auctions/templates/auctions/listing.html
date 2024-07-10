@@ -28,15 +28,15 @@
             
             <div class="below-image-container">
 
-                <div class="listing-text-container">
-                        Category: {{ listing.category|title }}
-                    <br>
-                        Starting bid: ${{ listing.starting_bid }}
-                    <br>
+                <div class="indiv-listing-text-container">
+                        <p class="stats">Category: {{ listing.category|title }}</p>
+                    
+                        <p class="stats">Starting bid: ${{ listing.starting_bid }}</p>
+                    
                     {% if listing.current_bid == None %}
-                        Current bid: {{ listing.current_bid }}
+                        <p class="stats">Current bid: {{ listing.current_bid }}</p>
                     {% else %}
-                        Current bid: ${{ listing.current_bid.amount }}
+                        <p class="stats">Current bid: ${{ listing.current_bid.amount }}</p>
                     {% endif %}
                 </div>
 
@@ -58,7 +58,7 @@
                     {% endif %}
                     {% if user.is_authenticated and listing.status != "closed" %}
                         {% if user != listing.owner %}
-                            <form action="{% url 'listing' listing.id %}" method="post">
+                            <form class="inline-form" action="{% url 'listing' listing.id %}" method="post">
                                 {% csrf_token %}
                                 {{ bid_form }}
                                 <input type="hidden" name="action" value="bid">
@@ -87,10 +87,10 @@
 
             <h4 class="title">Comments</h4>
             {% if user.is_authenticated %}
-                <form action="{% url 'listing' listing.id %}" method="post">
+                <form class="inline-form" id="indiv-comment-form" action="{% url 'listing' listing.id %}" method="post">
                     {% csrf_token %}
                     {{ comment_form }}
-                    <input type="hidden" name="action" value="comment">
+                    <input id="comment-input" type="hidden" name="action" value="comment">
                     <button type="submit">Post</button>
                 </form>
             {% else %}

@@ -19,15 +19,41 @@ body {
     .dropdown-menu .dropdown-item:hover {
         background-color: rgb(62, 62, 62);
     }
+    #indiv-comment-form > input, textarea {
+        background-color:rgb(16, 16, 16);
+    }
+    hr {
+        background-color:rgb(62, 62, 62);
+    }
+    button {
+        background-color: gainsboro;
+    }
+    .form-control {
+        background-color:rgb(16, 16, 16);
+        color:gainsboro;
+    }
+    .form-control:not(:placeholder-shown) {
+        background-color:rgb(16, 16, 16);
+        color:gainsboro;
+    }
+    .form-control:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px rgb(16, 16, 16) inset !important;
+        -webkit-text-fill-color: gainsboro !important;
+        transition: background-color 5000s ease-in-out 0s; /* Adjust the transition time as needed */
+    }
+    #btn-primary, #reg-button {
+        background-color:lightskyblue;
+        color:rgb(16, 16, 16);
+    }
   }
-.listing-page-container{
+.listing-page-container {
     margin-top: 15px;
     border-style: hidden;
     display:flex;
     overflow-x:auto;
     column-gap: 30px;
 }
-#index-container{
+#index-container {
     display:flex;
     overflow-x:auto;
     overflow-y:hidden;
@@ -38,7 +64,7 @@ body {
 .index-container::-webkit-scrollbar {
     display: none;
   }
-.listing-container{
+.listing-container {
     flex: 0 0 300px; /* Ensure the flex properties don't override the width */
     height: 550px;
     padding:15px;
@@ -47,7 +73,7 @@ body {
     box-sizing: border-box;
     text-align:center;
 }
-.indiv-listing-container{
+.indiv-listing-container {
     flex: 0 0 510px; /* Ensure the flex properties don't override the width */
     height: 605px;
     padding:15px;
@@ -56,34 +82,57 @@ body {
     box-sizing: border-box;
     text-align:center;
 }
-.below-image-container{
+.below-image-container {
     place-content:center;
     border-style: hidden;
+    padding-left:10px;
+    padding-right:10px;
     margin-top:60px;
     display:flex;
-    column-gap: 70px;
 }
-.listing-button-container{
+#login-form-container, #reg-form-container {
+    width:450px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.login-reg-container{
     display:grid;
-    row-gap: 10px;
-    flex-wrap: nowrap;
-    border-style: hidden;
+    border-style:ridge;
+    width:100%;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.listing-button-container {
+    display:flex;
+    flex-wrap: wrap;
+    width: 280px;
+    column-gap:30px;
+    justify-content: right;
 }
 .side-container {
     border-style:solid;
     padding:15px;
+    min-width:510px;
 }
 
-.listing-text-container{
+.listing-text-container {
     text-align:left;
 }
-.listing-description-container{
+.indiv-listing-text-container {
+    text-align:left;
+    width: 170px;
+}
+.listing-description-container {
     height:180px;
     border-style:hidden;
     border-width: 1px;
     overflow-y:scroll;
 }
-.indiv-listing-description-container{
+.stats {
+    margin-bottom:2px;
+}
+.indiv-listing-description-container {
     height:180px;
     border-style:hidden;
 
@@ -96,7 +145,7 @@ body {
     margin-top:5px;
     margin-bottom: 15px;
 }
-.comments-container{
+.comments-container {
     padding:5px;
     height:220px;
     border-style:hidden;
@@ -115,4 +164,17 @@ body {
 hr {
     margin-bottom:5px;
     margin-top:-5px;
+}
+
+.inline-form {
+    display:inline-flex;
+    column-gap: 5px;
+}
+.inline-form > button {
+    flex: none;
+    height:fit-content;
+}
+#indiv-comment-form {
+    margin-top:5px;
+    margin-bottom:15px;
 }
