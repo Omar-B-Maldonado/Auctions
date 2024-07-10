@@ -12,7 +12,6 @@
     {% if watchlist and not user.is_authenticated %}
         <i>Log in to view your watchlist.</i>
     {% else %}
-    <div id="outer-container">
         <div id="index-container">
         {% for listing in listings|dictsortreversed:"id" %}
             <div class="listing-container">
@@ -51,6 +50,5 @@
             {% endif %}
         {% endfor %}
         </div>
-    </div>
     {% endif %}
 {% endblock %}
