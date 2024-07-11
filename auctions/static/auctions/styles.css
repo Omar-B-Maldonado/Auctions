@@ -28,7 +28,7 @@ body {
     button {
         background-color: gainsboro;
     }
-    .form-control {
+    .form-control, input {
         background-color:rgb(16, 16, 16);
         color:gainsboro;
     }
@@ -36,7 +36,7 @@ body {
         background-color:rgb(16, 16, 16);
         color:gainsboro;
     }
-    .form-control:-webkit-autofill {
+    .form-control:-webkit-autofill, input:-webkit-autofill {
         -webkit-box-shadow: 0 0 0 30px rgb(16, 16, 16) inset !important;
         -webkit-text-fill-color: gainsboro !important;
         transition: background-color 5000s ease-in-out 0s; /* Adjust the transition time as needed */
@@ -177,4 +177,14 @@ hr {
 #indiv-comment-form {
     margin-top:5px;
     margin-bottom:15px;
+}
+#create-form-container {
+    display:grid;
+    justify-content:center;
+}
+#create-btn-container {
+    width: 400px;
+    display:grid;
+    justify-content: right;
+    margin-top: -30px;
 }

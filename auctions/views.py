@@ -16,11 +16,11 @@ category_choices=[
     ]
 
 class NewListingForm(forms.Form):
-    title        = forms.CharField   (label = "", widget=forms.TextInput  (attrs={"placeholder" : "Page Title"}))
-    description  = forms.CharField   (label = "", widget=forms.Textarea   (attrs={"placeholder" : "Place your description here!", "style": "height: 550px; margin-top: 30px;"}))
-    starting_bid = forms.IntegerField(label = "", widget=forms.NumberInput(attrs={"placeholder" : "Desired Starting Bid"}))
-    image        = forms.URLField    (label="", required=False, widget=forms.URLInput(attrs={"placeholder": "Image URL"}))
-    category     = forms.ChoiceField (label="", required=False, choices=category_choices)
+    title        = forms.CharField   (label = "", widget=forms.TextInput  (attrs={"placeholder" : "Page Title", "style": "width: 400px;"}))
+    description  = forms.CharField   (label = "", widget=forms.Textarea   (attrs={"placeholder" : "Place your description here!", "style": "height: 250px; width: 400px; margin-top: 10px; margin-bottom: 10px;"}))
+    starting_bid = forms.IntegerField(label = "", widget=forms.NumberInput(attrs={"placeholder" : "Desired Starting Bid", "style": "width: 400px; margin-bottom: 10px;"}))
+    image        = forms.URLField    (label="", required=False, widget=forms.URLInput(attrs={"placeholder": "Image URL", "style": "width: 400px; margin-bottom: 10px;"}))
+    category     = forms.ChoiceField (label="Category", required=False, choices=category_choices)
 
 class NewCommentForm(forms.Form):
     content = forms.CharField(label = "", widget=forms.Textarea(attrs={
