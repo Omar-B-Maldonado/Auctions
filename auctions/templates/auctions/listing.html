@@ -90,7 +90,7 @@
                 <form class="inline-form" id="indiv-comment-form" action="{% url 'listing' listing.id %}" method="post">
                     {% csrf_token %}
                     {{ comment_form }}
-                    <input id="comment-input" type="hidden" name="action" value="comment">
+                    <input type="hidden" name="action" value="comment">
                     <button type="submit">Post</button>
                 </form>
             {% else %}
