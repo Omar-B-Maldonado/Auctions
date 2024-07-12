@@ -4,7 +4,7 @@
 > This is a commerce website made in Django with Python, JavaScript, HTML, and CSS. The website enables auction-style bidding through role-based access control and has many quality-of-life features. Its main focus is to provide a simple and clean user-interface for interacting with auction listings.
 
 ### Why?
-> This website was originally made as part of a project in Harvard CS50's *Web Programming with Python and JavaScript* course, in which I was tasked to create a website with some of the functionalities listed in the section below.
+> This website was originally made as part of a project in Harvard CS50's *Web Programming with Python and JavaScript* course, in which I was tasked with creating a website that has some of the features listed in the section below.
 > After completing the requirements, I decided to polish up the user interface add a few more features, since it felt rewarding to take the project further and create a more usable product.
 
 ## <p align="center">Key Features</p>
