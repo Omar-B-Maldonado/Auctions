@@ -1,6 +1,6 @@
 # <p align="center">Auctions</p>
 
-### What is This?
+### What is this?
 > This is a commerce website made in Django with Python, JavaScript, HTML, and CSS. The website enables auction-style bidding through role-based access control and has many quality-of-life features. Its main focus is to provide a simple and clean user-interface for interacting with auction listings.
 
 ### Why?
@@ -24,3 +24,21 @@ Along with creating and viewing listing pages, there are many key features tailo
 
 ### Toggle Dark Mode
 > ![Toggle_Dark-Mode](https://github.com/user-attachments/assets/0dee1418-b627-49c7-81c6-3c0adc2e4424)
+
+## <p align="center">How to Try it Yourself</p>
+> 1. Clone the repository
+> 
+> 2. *If you don't have Django installed*, run the following command in your IDE's terminal:
+>      ```
+>        pip install Django
+>      ```
+> 3. Run the server via the following terminal command:
+>      ```
+>        python manage.py runserver
+>      ```
+> 4. Open a browser tab and visit the http link shown in your terminal. It should look something like this:
+>      ```
+>        http://127.0.0.1:8000/
+>      ```
+> *Note: on Mac, you may have to replace 'pip' with 'pip3' and 'python' with 'python3' in your terminal commands.*
+
